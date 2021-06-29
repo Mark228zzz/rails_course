@@ -1,9 +1,3 @@
-GIT
-  remote: https://github.com/deivid-rodriguez/byebug.git
-  revision: ddad523427d4ccb5c94aa4858b64b4bbf3d0399c
-  specs:
-    byebug (11.1.3)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -72,6 +66,7 @@ GEM
     bootsnap (1.7.5)
       msgpack (~> 1.0)
     builder (3.2.4)
+    byebug (11.1.3)
     capybara (3.35.3)
       addressable
       mini_mime (>= 0.1.3)
@@ -206,8 +201,8 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
-  byebug!
-  capybara (>= 3.26)
+  byebug
+  capybara (>= 2.15)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg (~> 1.1)
