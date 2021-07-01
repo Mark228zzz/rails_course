@@ -1,8 +1,13 @@
+<p style="text-align: center">
+  <%= link_to "NEW ITEM", new_item_path, style: "color: #4cf200"  %>
+</p>
 <% @items.each do |item| %>
-<!--  <ul>
-    <li><%= item.name %></li>
-    <li><%= item.price %></li>
-    <li><%= item.description %></li>
+  <ul>
+    <li><%= link_to item.name, item %></li>
+    <li><%= item.price.present? ? item.price : "no price" %></li>
+    <li><%= item.description.present? ? item.description : "no string" %></li>
+    <li><%= distance_of_time_in_words_to_now(item.created_at) %></li>
+    <li><%= link_to "EDIT", edit_item_path(item) %></li>
+    <li><%= link_to "DELETE", item_path(item), method: :delete%></li>
   </ul>
 <% end %>
-
