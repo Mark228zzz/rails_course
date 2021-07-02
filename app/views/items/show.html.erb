@@ -8,7 +8,10 @@
   <li>Description: <%= @item.description %></li>
 </ul>
 <br>
-<%= link_to "EDIT", edit_item_path(@item) %>
+<%= link_to "EDIT #{@item.name}", edit_item_path%>
 <br>
 <br>
 <%= link_to "BACK", items_path %>
+<br>
+<br>
+<%= button_to "delete #{@item.name}", item_path(@item), method: :delete, style: "color: red" %>
