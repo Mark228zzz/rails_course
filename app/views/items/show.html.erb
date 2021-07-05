@@ -15,3 +15,5 @@
 <br>
 <br>
 <%= button_to "delete #{@item.name}", item_path(@item), method: :delete, style: "color: red" %>
+
+<%= render partial: 'shared/email' %>

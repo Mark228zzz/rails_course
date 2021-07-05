@@ -1,36 +1,45 @@
-<p style="text-align: center">
-  <%= button_to "NEW ITEM", new_item_path, style: "color: #4cf200; text-align: center", method: :get  %>
-</p>
-
 <h2 style="text-align: left; color: red">all item</h2>
 
-<table>
-  <tr>
-    <th>Id</th>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Description</th>
-    <th>Rating</th>
-    <th>DELETE</th>
-  <th></th>
-  </tr>
-  <% @items.each do |item| %>
-  <tr>
-    <td><%= item.id %></td>
-    <td><%= link_to item.name, item_path(item) %></td>
-    <td><%= item.price %></td>
-    <td><%= item.description %></td>
-    <td><%= item.votes_count %><%= link_to '+', upvote_item_path(item) %></td>
-    <td><%= button_to 'delete', item_path(item), method: :delete, style: "color: red" %></td>
-  </tr>
-  <% end %>
+<% unless @items.empty? %>
+  <p style="text-align: center">
+    <%= button_to "NEW ITEM @_@", new_item_path, style: "color: #4cf200; text-align: center", method: :get  %>
+  </p>
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>Rating</th>
+      <th>DELETE</th>
+      <th></th>
+    </tr>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= link_to item.name, item_path(item) %></td>
+        <td><%= item.price %></td>
+        <td><%= item.description %></td>
+        <td><%= item.votes_count %><%= link_to ' +', upvote_item_path(item) %></td>
+        <td><%= button_to 'delete', item_path(item), method: :delete, style: "color: red" %></td>
+      </tr>
+    <% end %>
 
-</table>
-<p style="text-align: left">
-  <%= button_to "only expensive $$$", expensive_items_path, style: "color: blue", method: :get  %>
-</p>
-<p style="text-align: left">
-  <%= button_to "go to all item", items_path, style: "color: blue", method: :get  %>
-</p>
+  </table>
+  <p style="text-align: left">
+    <%= button_to "only expensive $$$", expensive_items_path, style: "color: blue", method: :get  %>
+  </p>
+  <p style="text-align: left">
+    <%= button_to "go to all item", items_path, style: "color: blue", method: :get  %>
+  </p>
+<% else %>
+  <h1 style="text-align: left; color: red">NO ITEM /0_0\</h1>
+  <p style="text-align: center">
+    <%= button_to "NEW ITEM @_@", new_item_path, style: "color: #4cf200; text-align: center", method: :get  %>
+  </p>
+<% end %>
+
+<%= render partial: 'shared/email' %>
+
 
 
