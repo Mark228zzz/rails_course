@@ -11,7 +11,7 @@
   <br>
   <br>
   <br>
-  <%= link_to "CANCEL", item_path(@item) %>
+  <%= button_to "CANCEL", item_path(@item), method: :get %>
 <% end %>
 
 <%= render partial: 'shared/email' %>

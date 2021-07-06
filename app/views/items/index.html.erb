@@ -4,7 +4,7 @@
   <p style="text-align: center">
     <%= button_to "NEW ITEM @_@", new_item_path, style: "color: #4cf200; text-align: center", method: :get  %>
   </p>
-  <table>
+  <table class="my_table">
     <tr>
       <th>Id</th>
       <th>Name</th>
@@ -16,12 +16,12 @@
     </tr>
     <% @items.each do |item| %>
       <tr>
-        <td><%= item.id %></td>
-        <td><%= link_to item.name, item_path(item) %></td>
-        <td><%= item.price %></td>
-        <td><%= item.description %></td>
-        <td><%= item.votes_count %><%= link_to ' +', upvote_item_path(item) %></td>
-        <td><%= button_to 'delete', item_path(item), method: :delete, style: "color: red" %></td>
+        <th><%= item.id %></th>
+        <th><%= button_to item.name, item_path(item), method: :get %></th>
+        <th><%= item.price %></th>
+        <th><%= "img" if item.description %></th>
+        <th><%= item.votes_count %><%= button_to '+', upvote_item_path(item), method: :get %></th>
+        <th><%= button_to 'delete', item_path(item), method: :delete, style: "color: red" %></th>
       </tr>
     <% end %>
 
@@ -32,14 +32,17 @@
   <p style="text-align: left">
     <%= button_to "go to all item", items_path, style: "color: blue", method: :get  %>
   </p>
+  <%= button_to 'admin panel', admin_users_count_path, style: "color: gray", method: :get%>
 <% else %>
-  <h1 style="text-align: left; color: red">NO ITEM /0_0\</h1>
-  <p style="text-align: center">
-    <%= button_to "NEW ITEM @_@", new_item_path, style: "color: #4cf200; text-align: center", method: :get  %>
+  <h1 style="text-align: left; color: red">NO ITEM or HIDDEN ITEMS /0_0\</h1>
+  <p style="  text-align: center">
+    <%= button_to "NEW ITEM @_@", new_item_path, style: "color: #black; text-align: center", method: :get  %>
   </p>
 <% end %>
 
 <%= render partial: 'shared/email' %>
+
+
 
 
 
