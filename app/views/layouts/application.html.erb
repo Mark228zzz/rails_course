@@ -9,13 +9,17 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag asset_path('') %>
   </head>
 
   <body>
   <h1 style="color:red"; text-align="center" > NICE TRANSPORT SHOP </h1>
 
   <h1 style="color:red"; text-align="center" > User Panel </h1>
-    <%= yield %>
+  <p style="color: #B00100"><%= flash[:error] %></p>
+  <p style="color: #B00100"><%= flash[:success] %></p>
+
+  <%= yield %>
   </body>
 <h3> shop 24/7 </h3>
 </html>

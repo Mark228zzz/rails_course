@@ -1,17 +1,15 @@
 <h2 style="color: #B00100; margin: 0 auto">edit item</h2> <br/>
 
-<%= form_tag item_path(@item), method: :patch do %>
-  <%= label_tag :name %>
-  <%= text_field_tag :name, @item.name %>
-  <%= label_tag :price %>
-  <%= text_field_tag :price, @item.price %>
-  <%= label_tag :description %>
-  <%= text_field_tag :description, @item.description %>
-  <%= submit_tag "Update", class: "btn btn-large btn-primary" %>
+<%= simple_form_for @item do |f| %>
+  <%= f.input :name, label: "Name", input_html: { class: "form-text" } %>
+  <%= f.input :price, label: "price", input_html: { class: "form-text" }, required: true %>
+  <%= f.input :description, label: "description", input_html: { class: "form-text" }%>
+
+  <%= f.button :submit, class: "btn-primary" %>
+<% end %>
   <br>
   <br>
   <br>
   <%= button_to "CANCEL", item_path(@item), method: :get %>
-<% end %>
 
 <%= render partial: 'shared/email' %>

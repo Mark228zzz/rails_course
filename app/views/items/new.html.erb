@@ -1,13 +1,16 @@
+<div>
+
 <h2 style="color: #B00100; margin: 0 auto">create new item</h2> <br/>
 
-<%= form_tag items_path, method: :post do %>
-  <%= label_tag :name%>
-  <%= text_field_tag :name %>
-  <%= label_tag :price %>
-  <%= text_field_tag :price %>
-  <%= label_tag :description %>
-  <%= text_field_tag :description %>
-  <%= submit_tag "Save", class: "btn btn-large btn-primary" %>
+<%= simple_form_for @item do |f| %>
+  <%= f.input :name,  input_html: { class: "form-text" } %>
+  <%= f.input :price, input_html: { class: "form-text" }, required: true %>
+  <%= f.input :description, label: t("item.description") , input_html: { class: "form-text" }%>
+    <br>
+  <%= f.button :submit, class: "btn-primary" %>
 <% end %>
 
+
 <%= render partial: 'shared/email' %>
+
+</div>

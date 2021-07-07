@@ -11,16 +11,17 @@
       <th>Price</th>
       <th>Description</th>
       <th>Rating</th>
+      <th>image</th>
       <th>DELETE</th>
-      <th></th>
     </tr>
     <% @items.each do |item| %>
       <tr>
         <th><%= item.id %></th>
         <th><%= button_to item.name, item_path(item), method: :get %></th>
         <th><%= item.price %></th>
-        <th><%= "img" if item.description %></th>
+        <th><%= item.description %></th>
         <th><%= item.votes_count %><%= button_to '+', upvote_item_path(item), method: :get %></th>
+         <th><%= urls_to_content(item.description) %></th>
         <th><%= button_to 'delete', item_path(item), method: :delete, style: "color: red" %></th>
       </tr>
     <% end %>

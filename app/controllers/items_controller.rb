@@ -6,21 +6,24 @@ class ItemsController < ApplicationController
   after_action  :show_info, only: %i[index]
 
   def index
-    @items = Item.all
+    @items = Item.all.order :id
+    @items = @items.includes(:image)
   end
 
   def create
-    item = Item.create(items_params)
+    item = Item.create(items_param)
     if item.persisted?
+      flash[:success] = 'Item was saved'
       redirect_to item_path(item)
     else
-      render json: item.errors, status: :unprocessable_entity
+      flash.now[:error] = 'PLEASE FILL ALL FIELDS CORRECTLY'
+      render :new
     end
   end
 
-  # def new
-
-  #end
+  def new
+    @item = Item.new
+  end
 
   #def show
   #   render body: 'Page not found', status: 404 unless @item
@@ -31,17 +34,23 @@ class ItemsController < ApplicationController
   # end
 
   def update
-    if @item.update(items_params)
+    if @item.update(items_param)
+      flash[:success] = 'Item was updated'
+
       redirect_to item_path
     else
+      flash.now[:error] = "Item wasn't updated"
       render json: item.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
     if @item.destroy.destroyed?
-      redirect_to '/items'
+      flash[:success] = 'Item was deleted'
+      redirect_to items_path
     else
+      flash[:error] = "Item wasn't deleted"
+
       render json: item.errors, status: :unprocessable_entity
     end
   end
@@ -58,9 +67,11 @@ class ItemsController < ApplicationController
 
   private
 
-  def items_params
-    params.permit(:name, :price, :description)
+  def items_param
+    params.require(:item).permit(:name, :price, :description)
+
   end
+
   def find_item
     @item = Item.where(id: params[:id]).first
     render_404 unless @item
