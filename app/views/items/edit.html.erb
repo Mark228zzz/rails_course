@@ -1,15 +1,25 @@
-<h2 style="color: #B00100; margin: 0 auto">edit item</h2> <br/>
-
-<%= simple_form_for @item do |f| %>
-  <%= f.input :name, label: "Name", input_html: { class: "form-text" } %>
-  <%= f.input :price, label: "price", input_html: { class: "form-text" }, required: true %>
-  <%= f.input :description, label: "description", input_html: { class: "form-text" }%>
-
-  <%= f.button :submit, class: "btn-primary" %>
-<% end %>
-  <br>
-  <br>
-  <br>
-  <%= button_to "CANCEL", item_path(@item), method: :get %>
-
-<%= render partial: 'shared/email' %>
+<div class="col-sm-12 my-auto">
+  <h2 style="color: #B00100; margin: 0 auto">EDIT <%= @item.name.camelcase %></h2> <br>
+  <%= simple_form_for @item do |f| %>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <%= f.input :name, input_html: { class: "form-control form-control-sm",
+                                       id:"colFormLabelSm" } %>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :price, input_html: { class: "form-control form-control-sm",
+                                        id:"colFormLabelSm" }, required: true %>
+    </div>
+    <div class="col-sm-10">
+      <%= f.input :description, label: t("item.description"),
+                  input_html: { class: "form-control form-control-sm",
+                                      id:"colFormLabelSm"} %>
+    </div>
+    <div class="col-sm-10">
+      <%= f.button :submit, class: "btn btn-secondary",
+                   style: "margin-top: 15px" %>
+    </div>
+  </div>
+  <% end %>
+  <%= render partial: 'shared/email' %>
+</div>

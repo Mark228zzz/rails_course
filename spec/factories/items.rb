@@ -5,5 +5,6 @@ FactoryBot.define do
     real        { [true, false].sample }
     weight      { rand 5...10 }
     description { Faker::Lorem.word.downcase }
+
   end
 end

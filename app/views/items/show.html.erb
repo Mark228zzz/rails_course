@@ -1,0 +1,36 @@
+<h4><%= @item.name.upcase %></h4>
+
+<ul class="list-group">
+  <li class="list-group-item list-group-item-dark">
+    Price: <%= @item.price %> $
+  </li>
+  <li class="list-group-item list-group-item-dark">
+    Weight: <%= @item.weight %> kg.
+  </li>
+  <li class="list-group-item list-group-item-dark">
+    Description: <%= urls_to_content(@item.description) %>
+  </li>
+</ul>
+<br>
+<div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-toolbar mb-2" role="group" aria-label="First group">
+
+    <%= button_to "edit #{@item.name}", edit_item_path,
+                  method: :get,
+                  class: "btn btn-secondary",
+                  style: "margin-right: 15px" %>
+    <%= button_to "delete #{@item.name}", item_path(@item),
+                  method: :delete,
+                  class: "btn btn-secondary",
+                  style: "margin-right: 15px" %>
+    <%= button_to 'index page', items_path,
+                  method: :get,
+                  class: "btn btn-secondary",
+                  style: "margin-right: 15px" %>
+    <%= button_to @random, item_path,
+                  method: :get,
+                  class: "btn btn-secondary",
+                  style: "margin-right: 15px" %>
+  </div>
+</div>
+<%= render partial: 'shared/email' %>

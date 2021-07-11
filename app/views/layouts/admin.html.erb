@@ -3,7 +3,6 @@
 <html>
   <head>
     <title>RailsCourse</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,7 +11,12 @@
   </head>
 
   <body>
-  <h1 style="color:grey" > Admin Panel </h1>
-    <%= yield %>
+    <div class="jumbotron vertical-center">
+      <div class="container">
+        <h2 style="color: #B00100;">Admin Panel</h2>
+        <%= yield %>
+        <%= render partial: 'shared/email' %>
+      </div>
+    </div>
   </body>
 </html>

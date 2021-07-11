@@ -1,11 +1,13 @@
-// Place all the styles related to the items controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
 
-.my_table , tr, th {
-  border: 3px solid black;
-  padding: 4px;
-  margin: 1px;
-  background: #DADADA;
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
 
+.deleteAction {
+  cursor: pointer;
+}
+
+.deleteAction:hover {
+  color: #B00100;
 }

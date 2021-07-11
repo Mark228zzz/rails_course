@@ -24,9 +24,8 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
-  #def show
-  #   render body: 'Page not found', status: 404 unless @item
-  # end
+  def show
+  end
 
   #def edit
   #   render body: 'Page not found', status: 404 unless @item
@@ -35,7 +34,6 @@ class ItemsController < ApplicationController
   def update
     if @item.update(items_param)
       flash[:success] = 'Item was updated'
-
       redirect_to item_path
     else
       flash.now[:error] = "Item wasn't updated"

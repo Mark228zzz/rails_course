@@ -1,49 +1,62 @@
-<h2 style="text-align: left; color: red">all item</h2>
-
-<% unless @items.empty? %>
-  <p style="text-align: center">
-    <%= button_to "NEW ITEM @_@", new_item_path, style: "color: #4cf200; text-align: center", method: :get  %>
-  </p>
-  <table class="my_table">
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Description</th>
-      <th>Rating</th>
-      <th>image</th>
-      <th>DELETE</th>
-    </tr>
-    <% @items.each do |item| %>
-      <tr>
-        <th><%= item.id %></th>
-        <th><%= button_to item.name, item_path(item), method: :get %></th>
-        <th><%= item.price %></th>
-        <th><%= item.description %></th>
-        <th><%= item.votes_count %><%= button_to '+', upvote_item_path(item), method: :get %></th>
-         <th><%= urls_to_content(item.description) %></th>
-        <th><%= button_to 'delete', item_path(item), method: :delete, style: "color: red" %></th>
-      </tr>
-    <% end %>
-
-  </table>
-  <p style="text-align: left">
-    <%= button_to "only expensive $$$", expensive_items_path, style: "color: blue", method: :get  %>
-  </p>
-  <p style="text-align: left">
-    <%= button_to "go to all item", items_path, style: "color: blue", method: :get  %>
-  </p>
-  <%= button_to 'admin panel', admin_users_count_path, style: "color: gray", method: :get%>
+<h2 style="color: #B00100; margin: 0 auto">Items</h2> <br>
+<% if @items.empty? %>
+  <h3 style="color: #B00100; margin: 0 auto">Items</h3> <br>
+  <%= button_to 'new item', new_item_path, method: :get %>
 <% else %>
-  <h1 style="text-align: left; color: red">NO ITEM or HIDDEN ITEMS /0_0\</h1>
-  <p style="  text-align: center">
-    <%= button_to "NEW ITEM @_@", new_item_path, style: "color: #black; text-align: center", method: :get  %>
-  </p>
+<table class="table table-hover table-dark">
+  <thead>
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Name</th>
+    <th scope="col">Price</th>
+    <th scope="col">Description</th>
+    <th scope="col">Rating</th>
+    <th scope="col">Image</th>
+    <th scope="col">Delete</th>
+  </tr>
+  </thead>
+  <% @items.each do |item| %>
+    <tbody>
+  <tr data-item_id="<%= item.id %>">
+    <th scope="col"><%= item.id %></th>
+    <th style="color: black" scope="col"><%= link_to item.name.camelize, item_path(item), class: "text-info", method: :get %></th>
+    <th scope="col"><%= item.price %></th>
+    <th scope="col"><%= item.description %></th>
+    <th scope="col"><%= item.votes_count %> &nbsp; <%= link_to '+', upvote_item_path(item),
+                                                      class: "tex=info" %>
+    </th>
+    <th scope="col"><%= !item.image.nil? ? image_tag(item.image.file,
+                                                     width: '20px',
+                                                     height: '20px') : 'no img' %>
+    </th>
+    <th class="deleteAction btn btn-danger btn-sm"><span>remove</span></th>
+  </tr>
+    </tbody>
+  <% end %>
+</table>
+
+<div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-toolbar mr-2" role="group" aria-label="First group">
+
+    <%= button_to 'create item', new_item_path,
+                   method: :get ,
+                   class: "btn btn-outline-success",
+                   style: "margin-right: 15px" %>
+    <%= button_to 'only expensive$$$', expensive_items_path,
+                  method: :get ,
+                  class: "btn btn-outline-info",
+                  style: "margin-right: 15px" %>
+    <%= button_to 'index page', items_path,
+                  method: :get ,
+                  class: "btn btn-outline-light",
+                  style: "margin-right: 15px" %>
+    <%= button_to 'admin panel', admin_users_count_path,
+                  method: :get ,
+                  class: "btn btn-outline-gray",
+                  style: "margin-right: 15px" %>
+  </div>
+</div>
 <% end %>
-
 <%= render partial: 'shared/email' %>
-
-
-
 
 

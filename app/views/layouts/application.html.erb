@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-
 <html>
   <head>
     <title>RailsCourse</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= favicon_link_tag asset_path('') %>
+    <%= favicon_link_tag asset_path('1.jpg') %>
   </head>
 
   <body>
-  <h1 style="color:red"; text-align="center" > NICE TRANSPORT SHOP </h1>
 
-  <h1 style="color:red"; text-align="center" > User Panel </h1>
-  <p style="color: #B00100"><%= flash[:error] %></p>
-  <p style="color: #B00100"><%= flash[:success] %></p>
-
-  <%= yield %>
+     <div class="jumbotron vertical-center">
+       <div class="container">
+         <h2 style="color: #B00100;">User Panel</h2>
+         <p style="color: #B00100;"><%= flash[:error] %></p>
+         <p style="color: darkgreen;"><%= flash[:success] %></p>
+         <%= yield %>
+       </div>
+     </div>
   </body>
-<h3> shop 24/7 </h3>
+  <h3> shop 24/7 </h3>
 </html>
+
