@@ -12,11 +12,14 @@
 
   <body>
 
-     <div class="jumbotron vertical-center">
+  <!--devise-->
+<%= render 'include/auth/auth_header' %>
+  <!--devise-->
+
+  <div class="jumbotron vertical-center">
        <div class="container">
          <h2 style="color: #B00100;">User Panel</h2>
-         <p style="color: #B00100;"><%= flash[:error] %></p>
-         <p style="color: darkgreen;"><%= flash[:success] %></p>
+         <%= render 'include/main/notFication' %>
          <%= yield %>
        </div>
      </div>
